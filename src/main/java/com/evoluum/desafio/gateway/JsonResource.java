@@ -1,8 +1,12 @@
 package com.evoluum.desafio.gateway;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.evoluum.desafio.domain.Municipio;
+import com.evoluum.desafio.domain.Uf;
 import com.evoluum.desafio.dto.FileParametersDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -55,6 +59,38 @@ public class JsonResource {
 		}
 
 		return fileParametersDTOList;
+	}
+
+	public static String covertJsonToStringList(String json) {
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				false);
+
+		try {
+			Uf[] ufArray = objectMapper.readValue(json, Uf[].class);
+
+			return Arrays.asList(ufArray).stream().map(x -> x.getId().toString()).collect(Collectors.joining("|"));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public static List<Municipio> convertJsonToMunicipio(String json) {
+		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				false);
+
+		try {
+			Municipio[] municipioArray = objectMapper.readValue(json, Municipio[].class);
+
+			return Arrays.asList(municipioArray);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }
