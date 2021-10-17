@@ -11,7 +11,7 @@ public class EstadoService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	public String getAll() {
+	public String getAll() throws Exception {
 		logger.info("Listando todos os estados");
 
 		return IbgeResource.getAllEstados();

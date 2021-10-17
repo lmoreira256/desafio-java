@@ -19,7 +19,7 @@ public class MunicipioResource {
 
 	@Cacheable("searchByName")
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<?> searchByName(@RequestParam(name = "nomeCidade") String name) {
+	public ResponseEntity<?> searchByName(@RequestParam(name = "nomeCidade") String name) throws Exception {
 		String id = municipioService.searchByName(name);
 
 		return ResponseEntity.ok().body(id);

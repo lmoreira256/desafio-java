@@ -15,26 +15,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonResource {
 
-	public static String convertListToString(List<?> list) {
+	public static String convertListToString(List<?> list) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		try {
 			return objectMapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new Exception("Erro ao converter a lista para JSON.");
 		}
-
-		return null;
 	}
 
-	public static List<FileParametersDTO> convertJsonToParameters(String json) {
+	public static List<FileParametersDTO> convertJsonToParameters(String json) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				false);
 
-		List<FileParametersDTO> fileParametersDTOList = new ArrayList<FileParametersDTO>();
-
 		try {
+			List<FileParametersDTO> fileParametersDTOList = new ArrayList<FileParametersDTO>();
+
 			JsonNode rootNode = objectMapper.readTree(json);
 
 			rootNode.forEach(municipioNode -> {
@@ -53,15 +50,14 @@ public class JsonResource {
 				fileParametersDTOList.add(new FileParametersDTO(idEstado, siglaEstado, regiaoNome, nomeCidade,
 						nomeMesorregiao, nomeFormatado));
 			});
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		return fileParametersDTOList;
+			return fileParametersDTOList;
+		} catch (JsonProcessingException e) {
+			throw new Exception("Erro ao montar os parâmetros dos arquivos.");
+		}
 	}
 
-	public static String covertJsonToStringList(String json) {
+	public static String covertJsonToStringList(String json) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				false);
 
@@ -70,14 +66,12 @@ public class JsonResource {
 
 			return Arrays.asList(ufArray).stream().map(x -> x.getId().toString()).collect(Collectors.joining("|"));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new Exception("Erro ao converter o JSON para Lista.");
 		}
 
-		return null;
 	}
 
-	public static List<Municipio> convertJsonToMunicipio(String json) {
+	public static List<Municipio> convertJsonToMunicipio(String json) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
 				false);
 
@@ -86,11 +80,8 @@ public class JsonResource {
 
 			return Arrays.asList(municipioArray);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new Exception("Erro ao converter o JSON para os Municipios.");
 		}
-
-		return null;
 	}
 
 }

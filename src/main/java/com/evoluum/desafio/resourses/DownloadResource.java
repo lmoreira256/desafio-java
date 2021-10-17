@@ -23,7 +23,7 @@ public class DownloadResource {
 
 	@Cacheable("json")
 	@RequestMapping(value = "/json", method = RequestMethod.GET)
-	public ResponseEntity<?> json() {
+	public ResponseEntity<?> json() throws Exception {
 		byte[] byteFile = downloadService.json();
 
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, CONTENT_DISPOSITION_FILE_NAME + "json")
@@ -32,7 +32,7 @@ public class DownloadResource {
 
 	@Cacheable("csv")
 	@RequestMapping(value = "/csv", method = RequestMethod.GET)
-	public ResponseEntity<?> csv() {
+	public ResponseEntity<?> csv() throws Exception {
 		byte[] byteFile = downloadService.csv();
 
 		HttpHeaders headers = new HttpHeaders();

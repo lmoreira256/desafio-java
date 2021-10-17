@@ -19,7 +19,7 @@ public class MunicipioService {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Cacheable("getAllMunicipios")
-	public String getAll() {
+	public String getAll() throws Exception {
 		logger.info("Listando todos os municipios");
 
 		String estadosJson = IbgeResource.getAllEstados();
@@ -30,15 +30,23 @@ public class MunicipioService {
 	}
 
 	@Cacheable("searchByNameMunicipios")
-	public String searchByName(String name) {
+	public String searchByName(String name) throws Exception {
 		logger.info("Buscando id municipio por nome");
+
+		if (StringResource.isNullOrEmpty(name)) {
+			throw new Exception("O parâmetro de busca está inválido");
+		}
 
 		List<Municipio> municipioList = JsonResource.convertJsonToMunicipio(getAll());
 
 		String id = municipioList.stream().filter(x -> StringResource.stringComparator(x.getNome(), name))
 				.map(x -> x.getId().toString()).collect(Collectors.joining(", "));
 
-		return StringResource.isNullOrEmpty(id) ? "Nenhum id com o nome: " + name + " foi encontrado!" : id;
+		if (StringResource.isNullOrEmpty(id)) {
+			throw new Exception("Nenhum id com o nome: " + name + " foi encontrado.");
+		}
+
+		return id;
 	}
 
 }

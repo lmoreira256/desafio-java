@@ -20,7 +20,7 @@ public class DownloadService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	public byte[] json() {
+	public byte[] json() throws Exception {
 		logger.info("Iniciando montagem do json.");
 
 		List<FileParametersDTO> fileParametersDTOList = getFileData();
@@ -30,7 +30,7 @@ public class DownloadService {
 		return jsonString.getBytes(Charset.forName("UTF-8"));
 	}
 
-	public byte[] csv() {
+	public byte[] csv() throws Exception {
 		logger.info("Iniciando montagem do csv.");
 
 		List<FileParametersDTO> fileParametersDTOList = getFileData();
@@ -38,7 +38,7 @@ public class DownloadService {
 		return CsvResource.montCsvFile(fileParametersDTOList);
 	}
 
-	private List<FileParametersDTO> getFileData() {
+	private List<FileParametersDTO> getFileData() throws Exception {
 		logger.info("Iniciando montagem do conteúdo dos arquivos.");
 
 		String municipiosJson = municipioService.getAll();
