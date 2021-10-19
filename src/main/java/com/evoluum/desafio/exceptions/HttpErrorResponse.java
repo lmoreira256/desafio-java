@@ -1,13 +1,13 @@
 package com.evoluum.desafio.exceptions;
 
-public class ErrorMessageSchema {
+public class HttpErrorResponse {
 
 	private String message;
 
-	public ErrorMessageSchema() {
+	public HttpErrorResponse() {
 	}
 
-	public ErrorMessageSchema(String message) {
+	public HttpErrorResponse(String message) {
 		super();
 		this.message = message;
 	}

@@ -1,15 +1,15 @@
-package com.evoluum.desafio.dto;
+package com.evoluum.desafio.exceptions;
 
-public class ErrorMessageDTO extends RuntimeException {
+public class ErrorMessageException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
 	private String message;
 
-	public ErrorMessageDTO() {
+	public ErrorMessageException() {
 	}
 
-	public ErrorMessageDTO(String message) {
+	public ErrorMessageException(String message) {
 		super();
 		this.message = message;
 	}

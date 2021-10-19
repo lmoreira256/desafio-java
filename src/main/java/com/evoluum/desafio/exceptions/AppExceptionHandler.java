@@ -6,16 +6,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.evoluum.desafio.dto.ErrorMessageDTO;
-
 @ControllerAdvice
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(ErrorMessageDTO.class)
-	public ResponseEntity<Object> handleAnyException(ErrorMessageDTO e) {
-		ErrorMessageSchema errorMessageSchema = new ErrorMessageSchema(e.getMessage());
+	@ExceptionHandler(ErrorMessageException.class)
+	public ResponseEntity<Object> handleAnyException(ErrorMessageException e) {
+		HttpErrorResponse httpErrorResponse = new HttpErrorResponse(e.getMessage());
 
-		return new ResponseEntity<Object>(errorMessageSchema, HttpStatus.INTERNAL_SERVER_ERROR);
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(httpErrorResponse);
 	}
 
 }

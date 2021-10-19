@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.evoluum.desafio.domain.Municipio;
 import com.evoluum.desafio.domain.Uf;
 import com.evoluum.desafio.dto.FileParametersDTO;
+import com.evoluum.desafio.exceptions.ErrorMessageException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,7 +22,7 @@ public class JsonResource {
 		try {
 			return objectMapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			throw new Exception("Erro ao converter a lista para JSON.");
+			throw new ErrorMessageException("Erro ao converter a lista para JSON.");
 		}
 	}
 
@@ -53,7 +54,7 @@ public class JsonResource {
 
 			return fileParametersDTOList;
 		} catch (JsonProcessingException e) {
-			throw new Exception("Erro ao montar os parâmetros dos arquivos.");
+			throw new ErrorMessageException("Erro ao montar os parâmetros dos arquivos.");
 		}
 	}
 
@@ -66,7 +67,7 @@ public class JsonResource {
 
 			return Arrays.asList(ufArray).stream().map(x -> x.getId().toString()).collect(Collectors.joining("|"));
 		} catch (JsonProcessingException e) {
-			throw new Exception("Erro ao converter o JSON para Lista.");
+			throw new ErrorMessageException("Erro ao converter o JSON para Lista.");
 		}
 
 	}
@@ -80,7 +81,7 @@ public class JsonResource {
 
 			return Arrays.asList(municipioArray);
 		} catch (JsonProcessingException e) {
-			throw new Exception("Erro ao converter o JSON para os Municipios.");
+			throw new ErrorMessageException("Erro ao converter o JSON para os Municipios.");
 		}
 	}
 

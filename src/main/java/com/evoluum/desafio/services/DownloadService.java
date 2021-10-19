@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.evoluum.desafio.dto.FileParametersDTO;
@@ -38,6 +39,7 @@ public class DownloadService {
 		return CsvResource.montCsvFile(fileParametersDTOList);
 	}
 
+	@Cacheable("getFileData")
 	private List<FileParametersDTO> getFileData() throws Exception {
 		logger.info("Iniciando montagem do conteúdo dos arquivos.");
 
