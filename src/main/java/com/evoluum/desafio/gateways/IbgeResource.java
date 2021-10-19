@@ -1,4 +1,4 @@
-package com.evoluum.desafio.gateway;
+package com.evoluum.desafio.gateways;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

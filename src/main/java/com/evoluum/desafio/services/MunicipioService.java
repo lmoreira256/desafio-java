@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.evoluum.desafio.domain.Municipio;
 import com.evoluum.desafio.exceptions.ErrorMessageException;
-import com.evoluum.desafio.gateway.IbgeResource;
-import com.evoluum.desafio.gateway.JsonResource;
-import com.evoluum.desafio.gateway.StringResource;
+import com.evoluum.desafio.gateways.IbgeResource;
+import com.evoluum.desafio.gateways.JsonResource;
+import com.evoluum.desafio.gateways.StringResource;
 
 @Service
 public class MunicipioService {

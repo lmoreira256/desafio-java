@@ -10,8 +10,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.evoluum.desafio.dto.FileParametersDTO;
-import com.evoluum.desafio.gateway.CsvResource;
-import com.evoluum.desafio.gateway.JsonResource;
+import com.evoluum.desafio.gateways.CsvResource;
+import com.evoluum.desafio.gateways.JsonResource;
 
 @Service
 public class DownloadService {

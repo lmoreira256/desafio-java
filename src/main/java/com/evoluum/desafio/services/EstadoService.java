@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.evoluum.desafio.gateway.IbgeResource;
+import com.evoluum.desafio.gateways.IbgeResource;
 
 @Service
 public class EstadoService {

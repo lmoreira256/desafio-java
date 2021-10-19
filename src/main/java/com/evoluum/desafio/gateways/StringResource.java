@@ -1,4 +1,4 @@
-package com.evoluum.desafio.gateway;
+package com.evoluum.desafio.gateways;
 
 import java.text.Normalizer;
 

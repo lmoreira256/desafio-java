@@ -1,4 +1,4 @@
-package com.evoluum.desafio.gateway;
+package com.evoluum.desafio.gateways;
 
 import java.util.ArrayList;
 import java.util.Arrays;
